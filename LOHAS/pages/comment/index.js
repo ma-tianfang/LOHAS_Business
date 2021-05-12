@@ -1,57 +1,47 @@
-// pages/order/order.js
-import {
-  request,
-} from "../../request/index.js";
-import regeneratorRuntime from "../../lib/runtime/runtime";
-import Dialog from '../../dist/dialog/dialog';
-import { uploadFile } from '../../utils/asyncWx.js'
-
+// pages/comment/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    orders:[],
-    total_page:0,
+    shop_comments:[],
+    total_page: 0
   },
 
+  // 接口要的参数
   QueryParams: {
     page_num: 1,
     page_size: 8,
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    
-  },
-
-  async getOrderList(){
-    const order = wx.getStorageSync('order');
-    if (!order) {
-      // 不存在 发送请求获取数据
-      this.getOrder();
-    } else {
-      // 有旧的数据 判断过期时间
-      if (Date.now() - order.time > 1000 * 10) {
-        // 重新发送请求
-        this.getOrder();
+    // 获取公告列表
+    async getCommentList() {
+      const Comments = wx.getStorageSync('comment');
+      if (!Comments) {
+        // 不存在 发送请求获取数据
+        this.getComment();
       } else {
-        // 可以使用旧数据
-        this.setData({
-          orders: order
-        });
+        // 有旧的数据 判断过期时间
+        if (Date.now() - Comments.time > 1000 * 10) {
+          // 重新发送请求
+          this.getComment();
+        } else {
+          // 可以使用旧数据
+          this.setData({
+            shop_comments: Comments
+          });
+        }
       }
-    }
-    wx.stopPullDownRefresh();
-  },
+  
+      wx - wx.stopPullDownRefresh();
+    },
 
-  async getOrder(){
+      // 获取数据
+  async getComment() {
     try {
       const res = await request({
-        url: "/ddlproductorder/shoporder",
+        url: "/comment/getmine",
         method: "POST",
         data: this.QueryParams,
         header: {
@@ -59,17 +49,16 @@ Page({
           "token": wx.getStorageSync('token')
         }
       });
-      console.log(res)
       if (res.statusCode == 200) {
         // 把接口数据存入本地缓存
         this.setData({
           // 拼接数组
-          orders: [...this.data.orders, ...res.data.mystery_boxes],
+          shop_comments: [...this.data.shop_comments, ...res.data.shop_comments],
           total_page: res.data.total_page
         });
-        wx - wx.setStorageSync('order', {
+        wx - wx.setStorageSync('comment', {
           time: Date.now(),
-          data: this.forsaleproduct_item_list
+          date: this.shop_comments
         });
       }
     } catch (error) {
@@ -77,10 +66,11 @@ Page({
     }
   },
 
-  jumpPage: function () {
-    wx.navigateTo({
-      url: './confirm'
-    })
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+
   },
 
   /**
@@ -95,10 +85,10 @@ Page({
    */
   onShow: function () {
     this.setData({
-      orders:[],
+      shop_comments:[],
       total_page:0
     })
-    this.getOrderList();
+    this.getCommentList();
   },
 
   /**
@@ -118,16 +108,16 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh() {
+  onPullDownRefresh: function () {
     // 重置数组
     this.setData({
-      orders: []
+      shop_comments: []
     })
 
     // 重置页码
     this.QueryParams.page_num = 1;
     // 发送请求
-    this.getOrderList();
+    this.getCommentList();
   },
 
   /**
@@ -139,7 +129,7 @@ Page({
     if (this.QueryParams.page_num < this.data.total_page) {
       // 还有下一页
       this.QueryParams.page_num += 1;
-      this.getOrder();
+      this.getComment();
     } else {
       //没有下一页
       wx - wx.showToast({

@@ -34,18 +34,18 @@
     text="折扣商品管理"
   />
   <van-grid-item
-    icon="gift-o"
-    link-type="navigateTo"
-    url="/pages/product/mystery_box/mystery_box"
-    text="盲盒商品管理"
-  />
-  </van-grid>
-  <van-grid clickable column-num="2">
-  <van-grid-item
     icon="orders-o"
     link-type="navigateTo"
     url="/pages/order/order"
-    text="盲盒订单管理"
+    text="折扣商品订单管理"
+  />
+  </van-grid>
+  <van-grid clickable column-num="2">
+    <van-grid-item
+    icon="chat-o"
+    link-type="navigateTo"
+    url="/pages/comment/index"
+    text="我的评论"
   />
   </van-grid>
 </view>

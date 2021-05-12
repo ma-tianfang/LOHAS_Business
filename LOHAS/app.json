@@ -13,7 +13,8 @@
     "pages/product/ddl_product/update",
     "pages/announcement/update",
     "pages/order/order",
-    "pages/order/confirm"
+    "pages/order/confirm",
+    "pages/comment/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -71,8 +72,8 @@
   },
   "plugins": {
     "chooseLocation": {
-    "version": "1.0.5",
-    "provider": "wx76a9a06e5b4e693e"
+      "version": "1.0.5",
+      "provider": "wx76a9a06e5b4e693e"
     }
-}
+  }
 }

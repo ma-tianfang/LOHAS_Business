@@ -1,6 +1,6 @@
 {
   "usingComponents": {},
-  "navigationBarTitleText":"折扣商品订单管理",
+  "navigationBarTitleText":"店铺评论",
   "navigationBarBackgroundColor":"#9ccd7a",
   "enablePullDownRefresh":true,
   "backgroundTextStyle":"dark"
