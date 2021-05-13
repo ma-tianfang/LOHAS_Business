@@ -77,6 +77,12 @@
           "pathName": "pages/product/mystery_box/update",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "核验订单",
+          "pathName": "pages/verification/index",
+          "query": "",
+          "scene": null
         }
       ]
     }

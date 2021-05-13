@@ -69,7 +69,7 @@ Page({
         });
         wx - wx.setStorageSync('order', {
           time: Date.now(),
-          data: this.forsaleproduct_item_list
+          data: this.orders
         });
       }
     } catch (error) {

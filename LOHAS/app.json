@@ -14,7 +14,8 @@
     "pages/announcement/update",
     "pages/order/order",
     "pages/order/confirm",
-    "pages/comment/index"
+    "pages/comment/index",
+    "pages/verification/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

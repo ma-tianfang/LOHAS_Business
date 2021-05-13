@@ -1,4 +1,9 @@
 // pages/comment/index.js
+import {
+  request,
+} from "../../request/index.js";
+import regeneratorRuntime from "../../lib/runtime/runtime";
+
 Page({
 
   /**
@@ -53,7 +58,7 @@ Page({
         // 把接口数据存入本地缓存
         this.setData({
           // 拼接数组
-          shop_comments: [...this.data.shop_comments, ...res.data.shop_comments],
+          shop_comments: [...this.data.shop_comments, ...res.data.comment_item_list],
           total_page: res.data.total_page
         });
         wx - wx.setStorageSync('comment', {
